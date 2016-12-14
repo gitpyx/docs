@@ -108,11 +108,11 @@ void time_countdown(Timer* timer, unsigned int timeout);
 ```
 
 ```
-time_left(Timer *timer);
+int time_left(Timer *timer);
 ```
 
 ```
-network_init(Network *n);
+void network_init(Network *n);
 ```
 
 ```
@@ -120,71 +120,71 @@ void network_securedinit(Network *n, const char* ca_buf, size_t ca_size);
 ```
 
 ```
-network_connect(Network *n, char *addr, int port);
+int network_connect(Network *n, char *addr, int port);
 ```
 
 ```
-network_disconnect(Network *n);
+void network_disconnect(Network *n);
 ```
 
 ```
-network_write(Network *n, unsigned char *buf, int len, int timeout_ms);
+int network_write(Network *n, unsigned char *buf, int len, int timeout_ms);
 ```
 
 ```
-network_read(Network *n, unsigned char *buf, int len, int timeout_ms);
+int network_read(Network *n, unsigned char *buf, int len, int timeout_ms);
 ```
 
 ```
-network_udp_init(Network *n);
+void network_udp_init(Network *n);
 ```
 
 ```
-network_udp_bind(Network *n);
+int network_udp_bind(Network *n);
 ```
 
 ```
-network_udp_write(Network *n, unsigned char *buf, int len);
+int network_udp_write(Network *n, unsigned char *buf, int len);
 ```
 
 ```
-network_udp_read(Network *n, unsigned char *buf, int len);
+int network_udp_read(Network *n, unsigned char *buf, int len);
 ```
 
 ```
-network_udp_close(Network *n);
+void network_udp_close(Network *n);
 ```
 
 ```
-mutex_init(Mutex *mutex);
+void mutex_init(Mutex *mutex);
 ```
 
 ```
-mutex_lock(Mutex *mutex);
+int mutex_lock(Mutex *mutex);
 ```
 
 ```
-mutex_unlock(Mutex *mutex);
+int mutex_unlock(Mutex *mutex);
 ```
 
 ```
-mutex_deinit(Mutex *mutex);
+void mutex_deinit(Mutex *mutex);
 ```
 
 ```
-semaphore_int(Semaphore *semaphore);
+void semaphore_int(Semaphore *semaphore);
 ```
 
 ```
-semaphore_deinit(Semaphore *semaphore);
+void semaphore_deinit(Semaphore *semaphore);
 ```
 
 ```
-semaphore_wait(Semaphore *semaphore, int timeout);
+int semaphore_wait(Semaphore *semaphore, int timeout);
 ```
 
 ```
-semaphore_post(Semaphore *semaphore);
+int semaphore_post(Semaphore *semaphore);
 ```
 
 ```
@@ -212,11 +212,11 @@ void plat_free(void *mem);
 ```
 
 ```
-uart_open(UART_ID uart_id, uint32_t baudrate)
+int uart_open(UART_ID uart_id, uint32_t baudrate)
 ```
 
 ```
-uart_close(UART_ID uart_id);
+void uart_close(UART_ID uart_id);
 ```
 
 ```
