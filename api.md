@@ -1,10 +1,6 @@
 # API
 
-配网 接口 回调函数
-
-配置参数接口
-
-OTA 接口
+配网 接口 回调函
 
 ## interface
 
@@ -38,6 +34,8 @@ typedef struct ej_ctx_t* ej_handle_t;
 ```
 
 ## external function
+
+### cloud API
 
 ```
 ej_ret_t ej_init_handle(ej_handle_t *handle);
@@ -80,12 +78,32 @@ ej_ret_t ej_disconnect(ej_handle_t *handler);
 ej_ret_t ej_set_network(int status)
 ```
 
+### log 
+
+```
+TODO:
 set_sdk_log_level()
 
 ej_printf(modue, ...);
 
+```
+
+### OTA
+
+```
+TODO:
+WIFI and machine OTA
+```
+
+### smart config
+
+```
+TODO:
+```
 
 ## internal function
+
+### timer
 
 ```
 void timer_init(Timer *timer);
@@ -102,6 +120,10 @@ void time_countdown(Timer* timer, unsigned int timeout);
 ```
 int time_left(Timer *timer);
 ```
+
+### network
+
+#### tcp
 
 ```
 void network_init(Network *n);
@@ -127,6 +149,8 @@ int network_write(Network *n, unsigned char *buf, int len, int timeout_ms);
 int network_read(Network *n, unsigned char *buf, int len, int timeout_ms);
 ```
 
+#### udp
+
 ```
 void network_udp_init(Network *n);
 ```
@@ -147,6 +171,8 @@ int network_udp_read(Network *n, unsigned char *buf, int len);
 void network_udp_close(Network *n);
 ```
 
+### mutex
+
 ```
 void mutex_init(Mutex *mutex);
 ```
@@ -162,6 +188,8 @@ int mutex_unlock(Mutex *mutex);
 ```
 void mutex_deinit(Mutex *mutex);
 ```
+
+### semaphore
 
 ```
 void semaphore_int(Semaphore *semaphore);
@@ -179,6 +207,8 @@ int semaphore_wait(Semaphore *semaphore, int timeout);
 int semaphore_post(Semaphore *semaphore);
 ```
 
+### thread
+
 ```
 int thread_create(thread_t *thread, init priority, const char *name, void (*founc)(void *), int stack_size, void *arg);
 ```
@@ -191,9 +221,13 @@ int thread_join(thread_t *thread, int timeout);
 int thread_destroy(thread_t *thread);
 ```
 
+### sleep
+
 ```
 int sleep(int ms);
 ```
+
+### memory
 
 ```
 void *plat_malloc(int size);
@@ -202,6 +236,8 @@ void *plat_malloc(int size);
 ```
 void plat_free(void *mem); 
 ```
+
+### uart
 
 ```
 int uart_open(UART_ID uart_id, uint32_t baudrate)
@@ -218,6 +254,8 @@ int16_t uart_read(const uint8_t *buf, uint32_t len);
 ```
 int16_t uart_write(uint8_t *buf, uint32_t len);
 ```
+
+### printf
 
 ```
 int plat_printf(const char *fmt, ...);
