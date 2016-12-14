@@ -6,11 +6,41 @@
 
 OTA 接口
 
+## interface
+
+```
+ typedef enum
+ {
+     EJ_NOT_SUBSCRIBED      = -13,
+     EJ_ALREADY_SUBSCRIBED  = -12,
+     EJ_TIMEOUT             = -11,
+     EF_UNSUBSCRIPTION_ERROR= -10,
+     EJ_SUBSCRIPTION_ERROR  = -9,
+     EJ_PUBLISH_ERROR       = -8,
+     EJ_NOT_CONNECTED       = -7,
+     EJ_CONNECTION_FAILED   = -6,
+     EJ_BAD_URL             = -5,
+     EJ_CERT_REQUIRED_ERROR = -4,
+     EJ_MEMORY_ERROR        = -3,
+     EJ_BAD_ARGS            = -2,
+     EJ_FAILURE             = -1,
+     EJ_SUCCESS             =  0,
+ } ej_ret;
+
+```
+
+```
+typedef int (*ej_callback_t)(void);
+```
+
+```
+typedef struct ej_ctx_t* ej_handle_t;
+```
 
 ## external function
 
 ```
-ej_ret ej_init_handle(ej_handler *handle);
+ej_ret ej_init_handle(ej_handle_t *handle);
 ```
 
 ```
@@ -19,7 +49,7 @@ ej_set_config
 
 
 ```
-ej_ret ej_detroy_handle(ej_handler *handle);
+ej_ret ej_detroy_handle(ej_handle_t *handle);
 ```
 
 ```
@@ -27,7 +57,7 @@ ej_ret ej_set_channel(uint8_t *mac);
 ```
 
 ```
-ej_ret ej_set_connect_callback(ej_callback lost_connect_callback, ej_callback restore_connect_callback);
+ej_ret ej_set_connect_callback(ej_callback_t lost_connect_callback, ej_callback_t restore_connect_callback);
 ```
 
 ```
@@ -35,15 +65,15 @@ ej_ret ej_set_thread_priority(int priority);
 ```
 
 ```
-ej_ret ej_set_thread_stacksize(ej_handler *handle, int size);
+ej_ret ej_set_thread_stacksize(ej_handle_t *handle, int size);
 ```
 
 ```
-ej_ret ej_connect(ej_handler *handler);
+ej_ret ej_connect(ej_handle_t *handler);
 ```
 
 ```
-ej_ret ej_disconnect(ej_handler *handler);
+ej_ret ej_disconnect(ej_handle_t *handler);
 ```
 
 ```
@@ -66,115 +96,119 @@ ej_printf(modue, ...);
 ## internal function
 
 ```
-timer_init
+void timer_init(Timer *timer);
 ```
 
 ```
-time_is_expired
+char time_is_expired(Timer *timer);
 ```
 
 ```
-time_countdown
+void time_countdown(Timer* timer, unsigned int timeout);
 ```
 
 ```
-time_left
+time_left(Timer *timer);
 ```
 
 ```
-network_init
+network_init(Network *n);
 ```
 
 ```
-network_connect
+void network_securedinit(Network *n, const char* ca_buf, size_t ca_size);
 ```
 
 ```
-network_disconnect
+network_connect(Network *n, char *addr, int port);
 ```
 
 ```
-network_write
+network_disconnect(Network *n);
 ```
 
 ```
-network_read
+network_write(Network *n, unsigned char *buf, int len, int timeout_ms);
 ```
 
 ```
-network_udp_create
+network_read(Network *n, unsigned char *buf, int len, int timeout_ms);
 ```
 
 ```
-network_udp_bind
+network_udp_init(Network *n);
 ```
 
 ```
-network_udp_write
+network_udp_bind(Network *n);
 ```
 
 ```
-network_udp_read
+network_udp_write(Network *n, unsigned char *buf, int len);
 ```
 
 ```
-network_udp_close
+network_udp_read(Network *n, unsigned char *buf, int len);
 ```
 
 ```
-mutex_init
+network_udp_close(Network *n);
 ```
 
 ```
-mutex_lock
+mutex_init(Mutex *mutex);
 ```
 
 ```
-mutex_unlock
+mutex_lock(Mutex *mutex);
 ```
 
 ```
-mutex_deinit
+mutex_unlock(Mutex *mutex);
 ```
 
 ```
-semaphore_int
+mutex_deinit(Mutex *mutex);
 ```
 
 ```
-semaphore_deinit
+semaphore_int(Semaphore *semaphore);
 ```
 
 ```
-semaphore_wait
+semaphore_deinit(Semaphore *semaphore);
 ```
 
 ```
-semaphore_post
+semaphore_wait(Semaphore *semaphore, int timeout);
 ```
 
 ```
-thread_create(thread *th, init priority, const char *name, void (*founc)(void *), int stack_size, void *arg)
+semaphore_post(Semaphore *semaphore);
 ```
 
 ```
-thread_join(thread *th, int)
+int thread_create(thread_t *thread, init priority, const char *name, void (*founc)(void *), int stack_size, void *arg);
 ```
 
 ```
-thread_destroy(thread *th)
+int thread_join(thread_t *thread, int timeout);
 ```
 
 ```
-sleep(int ms);
+int thread_destroy(thread_t *thread);
 ```
 
 ```
-plat_malloc(int size)
+int sleep(int ms);
 ```
 
 ```
-plat_free(void *mem); 
+void *plat_malloc(int size);
+```
+
+```
+void plat_free(void *mem); 
 ```
 
 ```
@@ -194,5 +228,5 @@ int16_t uart_write(uint8_t *buf, uint32_t len);
 ```
 
 ```
-printf
+int plat_printf(const char *fmt, ...);
 ```
