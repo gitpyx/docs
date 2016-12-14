@@ -25,7 +25,7 @@ OTA 接口
      EJ_BAD_ARGS            = -2,
      EJ_FAILURE             = -1,
      EJ_SUCCESS             =  0,
- } ej_ret;
+ } ej_ret_t;
 
 ```
 
@@ -40,7 +40,7 @@ typedef struct ej_ctx_t* ej_handle_t;
 ## external function
 
 ```
-ej_ret ej_init_handle(ej_handle_t *handle);
+ej_ret_t ej_init_handle(ej_handle_t *handle);
 ```
 
 ```
@@ -49,49 +49,41 @@ ej_set_config
 
 
 ```
-ej_ret ej_detroy_handle(ej_handle_t *handle);
+ej_ret_t ej_detroy_handle(ej_handle_t *handle);
 ```
 
 ```
-ej_ret ej_set_channel(uint8_t *mac);
+ej_ret_t ej_set_channel(uint8_t *mac);
 ```
 
 ```
-ej_ret ej_set_connect_callback(ej_callback_t lost_connect_callback, ej_callback_t restore_connect_callback);
+ej_ret_t ej_set_connect_callback(ej_callback_t lost_connect_callback, ej_callback_t restore_connect_callback);
 ```
 
 ```
-ej_ret ej_set_thread_priority(int priority);
+ej_ret_t ej_set_thread_priority(int priority);
 ```
 
 ```
-ej_ret ej_set_thread_stacksize(ej_handle_t *handle, int size);
+ej_ret_t ej_set_thread_stacksize(ej_handle_t *handle, int size);
 ```
 
 ```
-ej_ret ej_connect(ej_handle_t *handler);
+ej_ret_t ej_connect(ej_handle_t *handler);
 ```
 
 ```
-ej_ret ej_disconnect(ej_handle_t *handler);
+ej_ret_t ej_disconnect(ej_handle_t *handler);
 ```
 
 ```
-//ej_ret ej_snd_proprity_msg(uint8_t *payload);
+ej_ret_t ej_set_network(int status)
 ```
-
-//
-ej_ret ej_subscribe(uint8_t *topic, ej_callback func);
-
-//
-ej_set_network(int status)
-
 
 set_sdk_log_level()
 
 ej_printf(modue, ...);
 
-// 
 
 ## internal function
 
