@@ -140,6 +140,10 @@ int timer_reset(timer_t *timer);
 ```
 
 ```
+bool timer_is_running(timer_t *timer);
+```
+
+```
 int time_delete(timer_t *timer);
 ```
 
@@ -241,6 +245,10 @@ int queue_send(queue_t *qhandle, const void *msg, unsigned long wait);
 
 ```
 int queue_recv(queue_t *qhandle, void *msg, unsigned long wait);
+```
+
+```
+int queue_get_msgs_waiting(queue_t *qhandle);
 ```
 
 ```
