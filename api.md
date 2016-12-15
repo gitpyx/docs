@@ -119,6 +119,30 @@ void time_countdown(Timer* timer, unsigned int timeout);
 int time_left(Timer *timer);
 ```
 
+```
+int timer_create(timer_t *timer, const char *name, timer_tick ticks, void (*call_back)(ej_timer_arg_t), void *cb_arg, timer_reload_t reload, timer_activate_t activate);
+```
+
+```
+int timer_activate(timer_t *timer);
+```
+
+```
+int timer_deactivate(timer_t *timer);
+```
+
+```
+int timer_change(timer_t *timer, timer_tick ntime, timer_tick block_time)
+```
+
+```
+int timer_reset(timer_t *timer);
+```
+
+```
+int time_delete(Timer *timer);
+```
+
 ### network
 
 #### tcp
