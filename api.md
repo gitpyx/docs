@@ -132,7 +132,7 @@ int timer_deactivate(timer_t *timer);
 ```
 
 ```
-int timer_change(timer_t *timer, timer_tick ntime, timer_tick block_time)
+int timer_change(timer_t *timer, timer_tick ntime, timer_tick block_time);
 ```
 
 ```
@@ -140,7 +140,7 @@ int timer_reset(timer_t *timer);
 ```
 
 ```
-int time_delete(Timer *timer);
+int time_delete(timer_t *timer);
 ```
 
 ### network
