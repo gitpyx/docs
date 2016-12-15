@@ -205,6 +205,24 @@ int semaphore_wait(Semaphore *semaphore, int timeout);
 int semaphore_post(Semaphore *semaphore);
 ```
 
+### queue
+
+```
+int queue_create(queue_t *qhandle, const char *name, int msgsize, queue_pool_t *poolname);
+```
+
+```
+int queue_send(queue_t *qhandle, const void *msg, unsigned long wait);
+```
+
+```
+int queue_recv(queue_t *qhandle, void *msg, unsigned long wait);
+```
+
+```
+int queue_delete(queue_t *qhandle);
+```
+
 ### thread
 
 ```
